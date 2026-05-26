@@ -1,4 +1,4 @@
-# UAS Machine Learning Project: Analisis Perbandingan Algoritma Random Forest Regression, XGBoost, dan LSTM untuk Prediksi Daya Panel Surya Berdasarkan Data Meteorologi pada Wilayah 3T  di Indonesia
+# UAS Machine Learning Project: Analisis Perbandingan Algoritma Random Forest Regression, XGBoost untuk Prediksi Daya Panel Surya Berdasarkan Data Meteorologi pada Wilayah 3T  di Indonesia
 
 Proyek ini bertujuan untuk memprediksi output daya listrik panel surya di berbagai wilayah 3T (Terdepan, Terluar, Tertinggal) di Indonesia berdasarkan data meteorologi. Kami membandingkan performa tiga algoritma machine learning: Random Forest Regression, XGBoost, dan LSTM (Long Short-Term Memory) untuk menentukan model yang paling akurat dan efisien.
 
