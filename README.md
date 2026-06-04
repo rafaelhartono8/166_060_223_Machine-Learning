@@ -1,10 +1,10 @@
-# UAS Machine Learning Project: Analisis Perbandingan Algoritma Random Forest Regression, XGBoost untuk Prediksi Daya Panel Surya Berdasarkan Data Meteorologi pada Wilayah 3T  di Indonesia
+# UAS Machine Learning Project: Analisis Perbandingan Algoritma Random Forest Regression, dan XGBoost untuk Prediksi Daya Panel Surya Berdasarkan Data Meteorologi pada Wilayah 3T  di Indonesia
 
-Proyek ini bertujuan untuk memprediksi output daya listrik panel surya di berbagai wilayah 3T (Terdepan, Terluar, Tertinggal) di Indonesia berdasarkan data meteorologi. Kami membandingkan performa tiga algoritma machine learning: Random Forest Regression, XGBoost, dan LSTM (Long Short-Term Memory) untuk menentukan model yang paling akurat dan efisien.
+Proyek ini bertujuan untuk memprediksi output daya listrik panel surya di berbagai wilayah 3T (Terdepan, Terluar, Tertinggal) di Indonesia berdasarkan data meteorologi. Kami membandingkan performa dua algoritma machine learning: Random Forest Regression, dan XGBoost untuk menentukan model yang paling akurat dan efisien.
 
 ## Proyek
 
-**Judul**: Analisis Perbandingan Algoritma Random Forest Regression, XGBoost, dan LSTM untuk Prediksi Daya Panel Surya Berdasarkan Data Meteorologi pada Wilayah 3T  di Indonesia
+**Judul**: Analisis Perbandingan Algoritma Random Forest Regression, dan XGBoost untuk Prediksi Daya Panel Surya Berdasarkan Data Meteorologi pada Wilayah 3T  di Indonesia
 **Topik**: Energi
 **Rumusan Masalah**: 3.8 Minimnya Pemanfaatan IoT dan AI untuk Ekspansi Elektrifikasi di Daerah 3T
 
@@ -14,40 +14,63 @@ Proyek ini bertujuan untuk memprediksi output daya listrik panel surya di berbag
 2. Athiyyatus Salisah (24031554223)
 3. Nurul Aini (24031554060)
 
+## Rumusan Masalah
+
+1. Bagaimana membangun model yang mampu mengestimasi potensi daya panel surya pada wilayah 3T berdasarkan data meteorologi sebelum panel surya dipasang?
+2. Faktor meteorologi apa saja yang paling berpengaruh terhadap estimasi daya panel surya pada wilayah 3T?
+3. Bagaimana perbandingan kinerja algoritma Random Forest Regression dan XGBoost dalam mengestimasi daya panel surya berdasarkan data meteorologi pada wilayah 3T?
+4. Algoritma manakah yang memberikan performa terbaik dalam mengestimasi daya panel surya pada wilayah 3T?
+
+
 ## Tujuan
 
-1. Menganalisis korelasi antara variabel meteorologi khas iklim tropis Indonesia terhadap output daya listrik panel surya.
-2. Membangun dan menguji model prediksi menggunakan algoritma Random Forest dan XGBoost.
-3. Membandingkan performa kedua algoritma dengan  evaluasi regresi untuk menemukan akurasi terbaik.
-4. Mengevaluasi efisiensi komputasi training time dan penggunaan sumber daya dari masing-masing model untuk menentukan algoritma yang paling layak diimplementasikan.
+1. Mengembangkan model estimasi daya panel surya pada wilayah 3T berdasarkan data meteorologi.
+2. Mengidentifikasi faktor meteorologi yang paling berpengaruh terhadap daya panel surya.
+3. Menganalisis dan membandingkan kinerja algoritma Random Forest Regression dan XGBoost dalam mengestimasi daya panel surya.
+4. Menentukan algoritma dengan performa terbaik berdasarkan hasil evaluasi model.
 
 
-1. **Data Acquisition** : Pengambilan data dari API PVGIS untuk berbagai koordinat di Indonesia (2015-2020).
-2. **Preprocessing** :
 
-* Pembersihan data dan penghapusan  *duplicate* .
-* Konversi format waktu.
-* Agregasi data dari per jam menjadi harian untuk mengurangi *sparsity* (nilai nol pada malam hari).
+1. **Scrapping Data** : Pengambilan data dari API PVGIS untuk Kota/Kabupaten 3T di Indonesia (2015-2020).
 
-1. **Feature Engineering** :
+2. **Exploration Data** :
+* Visualisasi Daya Listrik Harian
+* Penghapusan Kolom Waktu
+* Pengecekan NaN
+* Distribusi data tiap kota
+* Statistika Deskriptif
+* Penghapusan kolom Int
 
-* Penambahan *Lag Features* (t-1).
-* Penambahan *Rolling Mean* (window 3 hari).
+3. **Spliting**
+* Menentukan X dan y
+* Pembagian data train dan data test 80:20
 
-1. **Modeling** :
+4. **Feature Engineering & Correlation** :
+* Encode kolom city ke numerik
+* Pair plot
+* Pearson Correlation
+* Anova
+* PCA
 
-* **Random Forest** : Menggunakan 100 estimator.
-* **XGBoost** : Menggunakan learning rate 0.1 dan max_depth 6.
-* **LSTM** : Arsitektur 64 unit dengan aktivasi ReLU.
+5. **Modeling** :
 
+* **Random Forest** : 
+Menggunakan 50 pohon
+Kedalaman maksimal 15
+Minimal 10 leaf
+
+* **XGBoost** :
+* Menggunakan 100 pohon dengan learning rate 0.1 dan kedalaman pohon maksimal 6.
+
+  
 ## Hasil Evaluasi (Ringkasan)
 
 Model menunjukkan akurasi yang sangat tinggi dalam memprediksi output daya harian:
 
 | **Model**         | **MAE** | **RMSE** | **R2 Score** |
 | ----------------------- | ------------- | -------------- | ------------------ |
-| **Random Forest** | 15.06         | 23.22          | 0.9997             |
-| **XGBoost**       | 15.02         | 22.28          | 0.9997             |
+| **Random Forest** | 14.5         | 28.96          | 0.9759             |
+| **XGBoost**       | 15.65         | 30.08          | 0.974             |
 
 ## Dependensi
 
@@ -56,14 +79,7 @@ Proyek ini membutuhkan library berikut:
 **Bash**
 
 ```
-pip install pandas numpy seaborn matplotlib scikit-learn xgboost tensorflow
-```
-
-## Cara Penggunaan
-
-1. Pastikan dataset `pvgis_indonesia_energy.csv` tersedia di direktori yang sama (dihasilkan oleh cell pertama pada notebook).
-2. Jalankan notebook secara berurutan ( *run all* ) di Google Colab atau Jupyter Notebook.
-3. Periksa visualisasi pada bagian distribusi data dan hasil evaluasi model.
+pip install gdown pandas numpy seaborn matplotlib statsmodels scikit-learn xgboost joblib```
 
 ## Struktur Folder
 
@@ -71,14 +87,13 @@ pip install pandas numpy seaborn matplotlib scikit-learn xgboost tensorflow
 
 ```
 /
-├── Copy_of_ML.ipynb          # Notebook utama analisis
+├── UAS_ML_Kel_4_2024C_166_060_223.ipynb # Notebook
 ├── pvgis_indonesia_energy.csv # Dataset hasil scraping API
+├── encoded_city.joblib # Encoding
+├── pca_transformed.joblib # PCA
+├── scaler_data.joblib # scaler
 └── README.md                 # Dokumentasi proyek
 ```
 
-## Catatan
-
-* Data memiliki *sparsity* sebesar 30.78% karena ketiadaan radiasi matahari pada malam hari. Hal ini diatasi dengan melakukan agregasi harian.
-* Model LSTM memerlukan *reshaping* input menjadi 3D tensor (`[samples, time_steps, features]`).
 
 *Proyek ini dibuat untuk keperluan akademik sebagai bagian dari tugas UAS Machine Learning untuk Kelompok 4 (2024C).*
