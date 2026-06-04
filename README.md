@@ -30,7 +30,7 @@ Proyek ini bertujuan untuk memprediksi output daya listrik panel surya di berbag
 4. Menentukan algoritma dengan performa terbaik berdasarkan hasil evaluasi model.
 
 
-
+## Alur        
 1. **Scrapping Data** : Pengambilan data dari API PVGIS untuk Kota/Kabupaten 3T di Indonesia (2015-2020).
 
 2. **Exploration Data** :
