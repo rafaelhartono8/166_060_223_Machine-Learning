@@ -63,7 +63,7 @@ Minimal 10 leaf
 * Menggunakan 100 pohon dengan learning rate 0.1 dan kedalaman pohon maksimal 6.
 
   
-## Hasil Evaluasi (Ringkasan)
+## Hasil Evaluasi
 
 Model menunjukkan akurasi yang sangat tinggi dalam memprediksi output daya harian:
 
